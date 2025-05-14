@@ -26,3 +26,5 @@ A Medical Database System is needed to enhance the efficiency and effectiveness 
 - Each appointment may have a corresponding medical record, and vice versa.
 - A medical facility can have multiple doctors, and a doctor can work in multiple medical facilities.
 - This relationship is represented through a junction table.
+
+![alt text](image.png)
