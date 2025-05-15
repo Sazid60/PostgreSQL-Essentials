@@ -624,3 +624,41 @@ CREATE TABLE person4 (
 ![alt text](image-57.png)
 
 ![alt text](image-58.png)
+
+## 7-11 Inserting Data Into a Table And Checking Constrains
+
+- We have made constrains now we are going to check.
+
+### Inserting data insert inside a table
+
+1. Single Row Insert
+
+![alt text](<WhatsApp Image 2025-05-16 at 03.13.19_7e53d1f6.jpg>)
+
+```sql
+INSERT INTO person2(id,user_name,age) VALUES(1,'sazid', 26);
+```
+
+2. Multiple Row Insert
+
+![alt text](<WhatsApp Image 2025-05-16 at 03.14.57_7139cbb6.jpg>)
+
+```sql
+INSERT INTO person2(id,user_name,age) VALUES(3,'lisa', 28), (4,'shakil', 29);
+```
+
+3. Alternative method. here we do not specify the columns this the drawback since if new column added this will cause problem.
+
+![alt text](<WhatsApp Image 2025-05-16 at 03.16.42_fea2dea8.jpg>)
+
+```sql
+INSERT INTO person2 VALUES(5,'Mir', 28), (6,'Pir', 29);
+```
+
+- check constrain
+
+```sql
+INSERT INTO person2 VALUES(7,'Firoza', 14);
+
+-- ERROR:  new row for relation "person2" violates check constraint "person2_age_check"
+```
