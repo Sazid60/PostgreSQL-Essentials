@@ -520,3 +520,55 @@ ALTER TABLE person RENAME TO "user";
 ```sql
 DROP TABLE "user";
 ```
+
+## 7-9 Creating A Table With Multiple Columns and Column Constrain
+
+#### What is Constrain?
+
+- Beside the columns we have gave type restriction why do I need constrains?
+- Data type give sone level validation
+- Extra level of restriction is given by constrains.pne column might have multiple constrains
+- The constrain is like setting rules and the rules should be maintained.
+
+![alt text](<WhatsApp Image 2025-05-16 at 00.05.38_950196e8.jpg>)
+
+- giving nothing means null . suppose we have product table so, here all product should have price it can not be null. if it becomes null it will be venerable.
+- There are some values we do not want to see null, in this case we will use constrain.
+
+![alt text](<WhatsApp Image 2025-05-16 at 00.09.42_902fd75d.jpg>)
+
+- In case of email the emails should be made unique.
+
+![alt text](<WhatsApp Image 2025-05-16 at 00.11.09_ed5e22cf.jpg>)
+
+- To Become a primary key a value can not be null and it should be unique.
+- If unique we can make a primary key and the field should never be null
+
+![alt text](<WhatsApp Image 2025-05-16 at 00.13.49_9affc0ac.jpg>)
+
+- In here customer id is foreign key and it is referencing from the costumer table primary key customer_id. and it must have to be customer_id
+
+![alt text](<WhatsApp Image 2025-05-16 at 00.19.02_99f78ff8.jpg>)
+
+- we can set the default values.
+
+![alt text](<WhatsApp Image 2025-05-16 at 00.19.42_123fb366.jpg>)
+
+- using check we can give custom validation.
+
+#### Those are column constrain these implies only on some certain columns.
+
+![alt text](<WhatsApp Image 2025-05-16 at 00.23.57_026ff59b.jpg>)
+
+```sql
+CREATE TABLE person2 (
+id serial PRIMARY KEY,
+user_name VARCHAR(20) NOT NULL,
+age INTEGER CHECK(age>=18)
+)
+```
+
+![alt text](image-55.png)
+![alt text](image-56.png)
+
+- by clicking the design we can see the structures that we have gave to the table.
