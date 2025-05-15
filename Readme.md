@@ -50,7 +50,7 @@ A Medical Database System is needed to enhance the efficiency and effectiveness 
 
 ![alt text](image-7.png)
 
-- Here the templates re the blue print of the database that we are going to create. In the templates there is already added what functionalities a database will have and what will be the constrains and how the features of a database is implemented all are built in the templates. using the templates the regular database are created. Here `template0` is used to create `template1`. We will use `template1` to create the database. and the `template0` is given for backup. `postgres` database is also made on the `template1`. If we make any changes in the `template1` All the database made will get the change.
+- Here the templates re the blue print of the database that we are going to create. In the templates there is already added what functionalities a database will have and what will be the constrains and how the features of a database is implemented all are built in the templates. using the templates the regular database are created. Here template0 is used to create template1. We will use template1 to create the database. and the template0 is given for backup. postgres database is also made on the template1. If we make any changes in the template1 All the database made will get the change.
 
 - `\c template1` lets move to the template1
 
@@ -60,7 +60,7 @@ A Medical Database System is needed to enhance the efficiency and effectiveness 
 
 ![alt text](image-8.png)
 
-- Switch to `postgres`
+- Switch to postgres
 
 ![alt text](image-10.png)
 
@@ -71,7 +71,9 @@ A Medical Database System is needed to enhance the efficiency and effectiveness 
 ![alt text](image-12.png)
 
 - While creating the database we can tell all the things that are by default to modify them while creating.
-  `CREATE DATABASE name
+
+```ts
+  CREATE DATABASE name
 [ WITH ] [ OWNER [=] user_name ]
        [ TEMPLATE [=] template ]
        [ ENCODING [=] encoding ]
@@ -88,6 +90,57 @@ A Medical Database System is needed to enhance the efficiency and effectiveness 
        [ ALLOW_CONNECTIONS [=] allowconn ]
        [ CONNECTION LIMIT [=] connlimit ] // at a time how many users
        [ IS_TEMPLATE [=] istemplate ]
-       [ OID [=] oid ]`
+       [ OID [=] oid ]
+
+```
+
 - this is not that necessary but we can do. `create database test_db2 with template template0;` we have used this to change the database template. `[ CONNECTION LIMIT [=] connlimit ]` this field is for limiting the users.
 - `psql -U postgres -d test_db` This will take us to the test_db database
+
+## 7-3 User, Role And Privilege Management In Postgres
+
+### Schema
+
+- lets understand the database schema. When we create a database a public schema is created b y default. If we want we can make other schema under the public schema. under the schema we can create the tables. `/dn` will show the available schema of the database.
+
+![alt text](image-13.png)
+
+- basically we will do all the works in public schema.
+- Schema is like a box. A database might have multiple table. the tables are separated in schema box. suppose we have a table named employee under public employee. if we want to access we will say `public.employee`, here is public is schema name. and if we do not give any schema name it will grab the public schema by default.
+
+### User Management in Postgres
+
+- `\du` this will show the users of the database
+
+![alt text](image-14.png)
+
+- Here are some attributes which are some privilege collection. the privileges are like we are giving permission for doing something. A user can update, delete, insert anything or not those are called privilege. some privilege all together makes attributes. we always skip the super user and make it like small work access to a user. since if anyone gets the access of the postgres access he will ruin our database as the postgres is super user.
+
+- `create user user1` this will create a user.
+- `create user user1 with login encrypted password '123456';` this will create a user who will have login attribute and will have a encrypted password .
+
+![alt text](image-15.png)
+
+![alt text](image-16.png)
+
+- `create role user1 with login encrypted password '123456';` this will create a role same like user.
+
+![alt text](image-17.png)
+
+- We can login the created user using the created one in psql
+
+![alt text](image-18.png)
+
+- If we use powershell we have to write `psql -U user1 -U postgres`
+
+![alt text](image-19.png)
+
+- as there is no table lets make a table using `create table test_table(name varchar(50));`
+
+![alt text](image-20.png)
+
+- using `\d` we can see the tables
+- lets insert a data to the table using `insert into test_table(name) values('Sazid');`
+- if we ant to see everything inside the table `select * from test_table`
+
+![alt text](image-21.png)
