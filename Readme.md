@@ -572,3 +572,93 @@ age INTEGER CHECK(age>=18)
 ![alt text](image-56.png)
 
 - by clicking the design we can see the structures that we have gave to the table.
+
+## 7-10 Different Methods To Define Constrains
+
+```sql
+CREATE TABLE person2 (
+id serial PRIMARY KEY,
+user_name VARCHAR(20) NOT NULL,
+age INTEGER CHECK(age>=18)
+)
+```
+
+- we can define the primary key in different way
+
+```sql
+CREATE TABLE person2 (
+id serial ,
+user_name VARCHAR(20) NOT NULL,
+age INTEGER CHECK(age>=18),
+PRIMARY KEY(id)
+)
+```
+
+- to add multiple constrain we have to follow this
+- when we make unique by default it does the indexing as well to the column for faster query.
+- If we use primary Key constrain it also makes indexing since here primary key is unique.
+
+```sql
+CREATE TABLE person2 (
+id serial ,
+user_name VARCHAR(20) NOT NULL UNIQUE,
+age INTEGER CHECK(age>=18),
+PRIMARY KEY(id)
+)
+```
+
+- when multiple key is required suing primary key() will be an option
+
+```sql
+CREATE TABLE person4 (
+  id serial,
+  user_name VARCHAR(20) NOT NULL,
+  age INTEGER CHECK(age >= 18),
+  PRIMARY KEY(id,user_name),
+  UNIQUE(user_name, age)
+);
+```
+
+- as like primary nkey we can also say unique constrain. here `UNIQUE(user_name,age)` is meaning something like combination of user_name,age can not be same. Like in first row Say User_Name : John, age:45, in the entire table this combination can not repeat.
+
+![alt text](image-57.png)
+
+![alt text](image-58.png)
+
+## 7-11 Inserting Data Into a Table And Checking Constrains
+
+- We have made constrains now we are going to check.
+
+### Inserting data insert inside a table
+
+1. Single Row Insert
+
+![alt text](<WhatsApp Image 2025-05-16 at 03.13.19_7e53d1f6.jpg>)
+
+```sql
+INSERT INTO person2(id,user_name,age) VALUES(1,'sazid', 26);
+```
+
+2. Multiple Row Insert
+
+![alt text](<WhatsApp Image 2025-05-16 at 03.14.57_7139cbb6.jpg>)
+
+```sql
+INSERT INTO person2(id,user_name,age) VALUES(3,'lisa', 28), (4,'shakil', 29);
+```
+
+3. Alternative method. here we do not specify the columns this the drawback since if new column added this will cause problem.
+
+![alt text](<WhatsApp Image 2025-05-16 at 03.16.42_fea2dea8.jpg>)
+
+```sql
+INSERT INTO person2 VALUES(5,'Mir', 28), (6,'Pir', 29);
+```
+
+- check constrain
+
+```sql
+INSERT INTO person2 VALUES(7,'Firoza', 14);
+
+-- ERROR:  new row for relation "person2" violates check constraint "person2_age_check"
+```
