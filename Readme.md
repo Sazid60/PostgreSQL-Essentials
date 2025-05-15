@@ -447,3 +447,76 @@ A Medical Database System is needed to enhance the efficiency and effectiveness 
 ![alt text](<WhatsApp Image 2025-05-15 at 20.45.09_c5b060f6.jpg>)
 
 - Instead Of Serial we can use this uuid for making primary key. Thi sis generated auto.
+
+## 7-8 Creating a table with multiple Columns And Different Data Types
+
+![alt text](image-46.png)
+
+- lets open the sql editor
+
+- `CREATE DATABASE ph;` will create a database named ph
+  ![alt text](image-47.png)
+
+##### Table Creating Format
+
+![alt text](<WhatsApp Image 2025-05-15 at 21.06.40_cb9b471f.jpg>)
+
+- by using constrain we can make it more strict like it should more unique in each row and can not be null. and the constrain is optional
+
+```sql
+-- create database ph;
+
+-- Creating a table
+
+CREATE TABLE person(
+person_id SERIAL,
+first_name VARCHAR(50),
+last_name VARCHAR(50),
+age INTEGER,
+is_active BOOLEAN,
+dob DATE
+)
+```
+
+- after creating the table we will see the table
+
+![alt text](image-48.png)
+
+- by clicking the fields wer can do more functionalities. like we can set the constrains in the flag.
+
+![alt text](image-49.png)
+
+- selecting from the tables section we can also edit the table
+
+![alt text](image-50.png)
+
+![alt text](image-51.png)
+
+![alt text](image-52.png)
+
+- we can change data type
+- we can add row column
+- we can set the constrains
+- we can do indexing
+
+![alt text](image-53.png)
+
+- by clicking the desired place or segment we can add what we want
+
+![alt text](image-54.png)
+
+- we can do all using GUI but for learning we will use sql query.
+
+##### Lets rename the table
+
+- as user is a reserved key of sql so nwe gave gave it inside a string
+
+```sql
+ALTER TABLE person RENAME TO "user";
+```
+
+##### Lets drop the table
+
+```sql
+DROP TABLE "user";
+```
