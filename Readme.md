@@ -238,11 +238,12 @@ A Medical Database System is needed to enhance the efficiency and effectiveness 
 | `REVOKE` | Removes access privileges    | `REVOKE SELECT ON users FROM read_only_user;` |
 
 - **TCL** - Transaction Control Language. Used to control transactions, especially in cases where multiple steps must succeed together.TCL is like Undo/Redo for your data changes.
-- | Command     | Description                                   | Example               |
-  | ----------- | --------------------------------------------- | --------------------- |
-  | `COMMIT`    | Saves all changes made during the transaction | `COMMIT;`             |
-  | `ROLLBACK`  | Undoes changes if something goes wrong        | `ROLLBACK;`           |
-  | `SAVEPOINT` | Sets a point to roll back to later            | `SAVEPOINT my_point;` |
+
+| Command     | Description                                   | Example               |
+| ----------- | --------------------------------------------- | --------------------- |
+| `COMMIT`    | Saves all changes made during the transaction | `COMMIT;`             |
+| `ROLLBACK`  | Undoes changes if something goes wrong        | `ROLLBACK;`           |
+| `SAVEPOINT` | Sets a point to roll back to later            | `SAVEPOINT my_point;` |
 
 - DQL - Data Query Language. Used to fetch data from the database. DQL is like asking questions: "Hey DB, show me this!"
 
@@ -254,3 +255,55 @@ A Medical Database System is needed to enhance the efficiency and effectiveness 
 
 - sql will be written in backend. sql can be written in raw or we can use orm.
 - SQL is a standardized query language and postgres is made based on SQL which is implementation Of SQL. While implementing it changes slightly.
+
+## 7-6 Exploring PGAdmin and Valentina Studio
+
+- PGAdmin Is a Graphical Interface By which we can we can run sql commands here as well. We can be compared as MongoDB Compass.
+
+![alt text](image-31.png)
+
+- Write the query using this tool as well
+
+![alt text](image-32.png)
+
+- Inside the database we have schema and under the schema we have public schema.under the public schema tables are created.
+
+![alt text](image-33.png)
+
+![alt text](image-35.png)
+
+- sql query will return data in table format.
+
+- The privileges and the users will be found here.
+
+![alt text](image-36.png)
+
+![alt text](image-37.png)
+
+- we can gr4ant or revoke a privilege from here like we have done in command line. when we will work in virtual private server like EC2 of aws or droplet of digital ocean we will use terminal since there will be only terminal access.
+
+- we will not use PGAdmin, we will use DataGrib here we will be able to connect mysql and other database. another one is DBeavar, TablePlus.
+
+- We wil use `valentian Studio` as its a cors platform we can use it in mac windows linux and it is easy to use. we can use multiple database like postgres,oracle, mysql and etc.
+
+![alt text](image-38.png)
+
+- by default postgres database will not show here. If We Want We Can Connect
+
+![alt text](image-39.png)
+
+- after this we will get the postgres database
+
+![alt text](image-40.png)
+
+![alt text](image-41.png)
+
+- If we press `ctrl+e` or press the execute button we will see the table available
+
+![alt text](image-42.png)
+
+- It will show the errors
+
+![alt text](image-43.png)
+
+- we can create database from here as well.
