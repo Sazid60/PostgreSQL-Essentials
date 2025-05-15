@@ -307,3 +307,216 @@ A Medical Database System is needed to enhance the efficiency and effectiveness 
 ![alt text](image-43.png)
 
 - we can create database from here as well.
+
+## 7-7 Create, Update and Delete Database and Data Types In Postgres.
+
+- use powershell `psql -U postgres -d postgres` Use This Command To connect in postgres user and postgres database.
+- `create database test;` this will create a database
+- If we want to change the database name `alter database test rename to ph;`
+
+![alt text](image-44.png)
+
+- By Using alter we can change the database name and as well as table or other names
+- If We want to delete the database we just have to say `drop database ph;`
+
+![alt text](image-45.png)
+
+#### Now Lets Create a table in the database.
+
+##### Data Types
+
+- While we create a table in a column what type of data will be there we have to tell.
+- In Each Column we have to keep fixed type of data. The reason behind to make the type fixed
+  1. **Data Consistency** : While Creating Column we will tell the data type so that different type data is not assignable.
+  2. **Performance** : Query Performance will be increase if we use proper data types
+  3. **Constrain Enforcement** : Its kind of validation
+  4. **Convenience and Functionality** : Like if we put date type of data we will get some facilities to work over date.
+  5. **Storage Efficiency** : We can define which column will take how much space.
+
+![alt text](<WhatsApp Image 2025-05-15 at 20.05.04_b7807c76.jpg>)
+
+#### Data Type in Postgres
+
+1. Boolean
+2. Number
+3. Binary
+4. Date/Time
+5. Json
+6. Character
+7. UUID
+8. Array
+9. XML
+
+- rather than these there are many more data types of postgres.
+- Mostly used data types are
+  1. Boolean
+  2. Numbers
+  3. Date/Time
+  4. Character
+  5. UUID
+
+#### Boolean Data Type
+
+- a boolean can be `true`,`false` or `null`. Null is also called boolean here in postgres
+- There is a fact like type casting `T` will be true , `No` it will make it false, `yes` it will be converted to true.
+
+#### Number Data Type
+
+##### Integers
+
+![alt text](<WhatsApp Image 2025-05-15 at 20.11.13_3e0580ee.jpg>)
+
+1. `INT`
+
+- **Range:** - 2,147,483,648 to 2,147,483,647
+- **Storage:** 4 bytes
+- **Usage:** Commonly used for standard integer values.The INT data type is used for integer values within the standard range
+
+2. `BIGINT`
+
+- **Range:** - 9,223,372,036,854,775,808 to 9,223,372,036,854,775,807
+- **Storage:** 8 bytes
+- **Usage:** Suitable for storing very large integer values. BIGINIT provides larger range than INT and is suitable for storing very large integer values
+
+3. `SMALLINT`
+
+- **Range:** - 32,768 to 32,767
+- **Storage:** 2 bytes
+- **Usage:** Ideal for small integer values with limited range. SmallINT is suitable for storing small integer values within a more limited range.
+
+##### Floating Point Numbers
+
+4. `FLOAT4` (Single Precision)
+
+- **Storage:** 4 bytes
+- **Precision:** Up to 6 digits Precision
+
+5. `FLOAT8` (Double Precision)
+
+- **Storage:** 8 bytes
+- **Precision:** Up to 15 digits Precision
+
+##### Exact Numeric
+
+6. `NUMERIC(precision, scale)`
+
+- **Range:** Unlimited
+- **Storage:** Variable (based on precision & scale)
+- **Example:** `NUMERIC(4,3)` — 4 digit before decimal, 3 after digit
+
+##### Serial Type
+
+7. `SERIAL`
+
+- **Range:** Like `INT`
+- **Behavior:** Auto-incrementing integer (used for primary keys). there will be no decrement
+
+#### Character Data Type
+
+![alt text](<WhatsApp Image 2025-05-15 at 20.31.25_7b1be982.jpg>)
+
+##### `CHAR`
+
+- `CHAR` is a **fixed-length** character type.
+- **Storage:** The length is fixed and specified when defining the column.
+- If the actual string is shorter than the specified length, it is padded with spaces.
+- **Example:** `CHAR(10)` means a fixed-length string of 10 characters.
+
+##### `VARCHAR`
+
+- `VARCHAR` is a **variable-length** character type.
+- **Storage:** The length is not fixed and can vary up to the specified maximum length.
+- No padding with spaces is done, making it more storage-efficient when dealing with variable-length strings.
+- **Example:** `VARCHAR(255)` means a variable-length string with a maximum length of 255 characters.
+
+##### `TEXT`
+
+- `TEXT` is also a **variable-length** character type.
+- **Storage:** Similar to `VARCHAR`, it is not fixed in length.
+- Typically used for longer text strings where the exact length is not known or can vary widely.
+- **Example:** `TEXT` is often used for columns containing large amounts of text.
+
+#### Date Type
+
+![alt text](<WhatsApp Image 2025-05-15 at 20.42.52_7343fa84.jpg>)
+
+- Postgres supports date type of all kind of date.
+
+#### UUID Type
+
+![alt text](<WhatsApp Image 2025-05-15 at 20.45.09_c5b060f6.jpg>)
+
+- Instead Of Serial we can use this uuid for making primary key. Thi sis generated auto.
+
+## 7-8 Creating a table with multiple Columns And Different Data Types
+
+![alt text](image-46.png)
+
+- lets open the sql editor
+
+- `CREATE DATABASE ph;` will create a database named ph
+  ![alt text](image-47.png)
+
+##### Table Creating Format
+
+![alt text](<WhatsApp Image 2025-05-15 at 21.06.40_cb9b471f.jpg>)
+
+- by using constrain we can make it more strict like it should more unique in each row and can not be null. and the constrain is optional
+
+```sql
+-- create database ph;
+
+-- Creating a table
+
+CREATE TABLE person(
+person_id SERIAL,
+first_name VARCHAR(50),
+last_name VARCHAR(50),
+age INTEGER,
+is_active BOOLEAN,
+dob DATE
+)
+```
+
+- after creating the table we will see the table
+
+![alt text](image-48.png)
+
+- by clicking the fields wer can do more functionalities. like we can set the constrains in the flag.
+
+![alt text](image-49.png)
+
+- selecting from the tables section we can also edit the table
+
+![alt text](image-50.png)
+
+![alt text](image-51.png)
+
+![alt text](image-52.png)
+
+- we can change data type
+- we can add row column
+- we can set the constrains
+- we can do indexing
+
+![alt text](image-53.png)
+
+- by clicking the desired place or segment we can add what we want
+
+![alt text](image-54.png)
+
+- we can do all using GUI but for learning we will use sql query.
+
+##### Lets rename the table
+
+- as user is a reserved key of sql so nwe gave gave it inside a string
+
+```sql
+ALTER TABLE person RENAME TO "user";
+```
+
+##### Lets drop the table
+
+```sql
+DROP TABLE "user";
+```
