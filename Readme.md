@@ -572,3 +572,55 @@ age INTEGER CHECK(age>=18)
 ![alt text](image-56.png)
 
 - by clicking the design we can see the structures that we have gave to the table.
+
+## 7-10 Different Methods To Define Constrains
+
+```sql
+CREATE TABLE person2 (
+id serial PRIMARY KEY,
+user_name VARCHAR(20) NOT NULL,
+age INTEGER CHECK(age>=18)
+)
+```
+
+- we can define the primary key in different way
+
+```sql
+CREATE TABLE person2 (
+id serial ,
+user_name VARCHAR(20) NOT NULL,
+age INTEGER CHECK(age>=18),
+PRIMARY KEY(id)
+)
+```
+
+- to add multiple constrain we have to follow this
+- when we make unique by default it does the indexing as well to the column for faster query.
+- If we use primary Key constrain it also makes indexing since here primary key is unique.
+
+```sql
+CREATE TABLE person2 (
+id serial ,
+user_name VARCHAR(20) NOT NULL UNIQUE,
+age INTEGER CHECK(age>=18),
+PRIMARY KEY(id)
+)
+```
+
+- when multiple key is required suing primary key() will be an option
+
+```sql
+CREATE TABLE person4 (
+  id serial,
+  user_name VARCHAR(20) NOT NULL,
+  age INTEGER CHECK(age >= 18),
+  PRIMARY KEY(id,user_name),
+  UNIQUE(user_name, age)
+);
+```
+
+- as like primary nkey we can also say unique constrain. here `UNIQUE(user_name,age)` is meaning something like combination of user_name,age can not be same. Like in first row Say User_Name : John, age:45, in the entire table this combination can not repeat.
+
+![alt text](image-57.png)
+
+![alt text](image-58.png)
