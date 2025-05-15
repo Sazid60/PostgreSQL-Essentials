@@ -194,3 +194,63 @@ A Medical Database System is needed to enhance the efficiency and effectiveness 
 
 - this is supposed to happen.
 - we can use a user as the privilege/attribute of another user
+
+## 7-5 Structured Query Language(SQL)
+
+#### What is Structured Query Language(SQL)?
+
+- It is a query language by using this we can do queries. This is specific domain language. By using this language we do communication with database. this is also called `sequel` at the early stage and the full form was standard english query language then the name is changed to sql. this do the query in database, this can grab data can post data, can update data, can delete data and manipulate data. This is a standardized language which works on relational database model. here query means a sql statement.
+
+- `SELECT * FROM test_table` this sis sql statement `SELECT` `FROM` is a sql keyword, `test_table` is a identifier.
+
+- SQL is a declarative language. There are some language that are imperative.
+- In declarative language we just have to say what to do. and we do not need to tell how to do.(sql)
+- In imperative language we have to tell everything step by step. (java). python is hybrid of imperative and declarative.
+
+![alt text](<WhatsApp Image 2025-05-15 at 13.23.56_01fb1615.jpg>)
+
+#### SQL Commands Are divided into different categories.
+
+![alt text](<WhatsApp Image 2025-05-15 at 13.33.41_33ae5ca6.jpg>)
+
+- **DDL** - Database Definition Language. Used to define and manage database structure(tables, schemas, etc). Think of DDL as "building or breaking the structure of your house".
+
+| Command    | Description                     | Example                                   |
+| ---------- | ------------------------------- | ----------------------------------------- |
+| `CREATE`   | Creates a new table or database | `CREATE TABLE users (id INT, name TEXT);` |
+| `DROP`     | Deletes a table or database     | `DROP TABLE users;`                       |
+| `ALTER`    | Modifies an existing table      | `ALTER TABLE users ADD email TEXT;`       |
+| `TRUNCATE` | Deletes all data in a table     | `TRUNCATE TABLE users;`                   |
+
+- **DML** - Database Manipulation/Modification Language. Used for modifying data inside existing tables. DML is like cleaning or changing the items inside your house.
+
+| Command  | Description            | Example                                        |
+| -------- | ---------------------- | ---------------------------------------------- |
+| `INSERT` | Adds new data          | `INSERT INTO users (name) VALUES ('Ali');`     |
+| `UPDATE` | Modifies existing data | `UPDATE users SET name = 'Ayan' WHERE id = 1;` |
+| `DELETE` | Removes data           | `DELETE FROM users WHERE id = 1;`              |
+
+- **DCL** - Database Control Language for controlling user access. Used for access control — who can see or modify what. DCL is like giving or taking back keys to your house.
+
+| Command  | Description                  | Example                                       |
+| -------- | ---------------------------- | --------------------------------------------- |
+| `GRANT`  | Gives user access privileges | `GRANT SELECT ON users TO read_only_user;`    |
+| `REVOKE` | Removes access privileges    | `REVOKE SELECT ON users FROM read_only_user;` |
+
+- **TCL** - Transaction Control Language. Used to control transactions, especially in cases where multiple steps must succeed together.TCL is like Undo/Redo for your data changes.
+- | Command     | Description                                   | Example               |
+  | ----------- | --------------------------------------------- | --------------------- |
+  | `COMMIT`    | Saves all changes made during the transaction | `COMMIT;`             |
+  | `ROLLBACK`  | Undoes changes if something goes wrong        | `ROLLBACK;`           |
+  | `SAVEPOINT` | Sets a point to roll back to later            | `SAVEPOINT my_point;` |
+
+- DQL - Data Query Language. Used to fetch data from the database. DQL is like asking questions: "Hey DB, show me this!"
+
+| Command  | Description                 | Example                |
+| -------- | --------------------------- | ---------------------- |
+| `SELECT` | Retrieves data from a table | `SELECT * FROM users;` |
+
+![alt text](<WhatsApp Image 2025-05-15 at 15.22.12_4b8f9c9d.jpg>)
+
+- sql will be written in backend. sql can be written in raw or we can use orm.
+- SQL is a standardized query language and postgres is made based on SQL which is implementation Of SQL. While implementing it changes slightly.
