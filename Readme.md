@@ -141,6 +141,116 @@ A Medical Database System is needed to enhance the efficiency and effectiveness 
 
 - using `\d` we can see the tables
 - lets insert a data to the table using `insert into test_table(name) values('Sazid');`
-- if we ant to see everything inside the table `select * from test_table`
+- if we ant to see everything inside the table `select * from test_table;`
 
 ![alt text](image-21.png)
+
+## 7-4 Granting and Revoking Privileges
+
+![alt text](image-22.png)
+
+- here we are as user who have no permission given. thats why we can not select all the columns of table using `select * from test_table;`.
+- now we want to give permission to the user1 from where we have logged in as postgres super user.
+- `grant all privileges on test_table to user1;` this will give the user1 all the access of doing read write and all.
+
+![alt text](image-23.png)
+
+- now from where we are logged in we are getting the access of the table.
+
+- `insert into test_table(name) values('Shakil');` we can insert as well by using User1.
+
+![alt text](image-24.png)
+
+- now make a user who will not get all the access. he just can see the data. `create user user2 with encrypted password '123456';`
+
+- open another tab and access using user2
+
+![alt text](image-25.png)
+
+- from the main postgres logged in terminal `grant select on test_table to user2` using this will allow the user2 to just select and show.
+
+![alt text](image-26.png)
+
+- From here we can see the table but can not insert as we have not gave te access to write.
+- we can take back the permission as well using `revoke select on test_table from user2;`.
+
+![alt text](image-27.png)
+
+- `grant all privileges on all tables in schema public to user2;` this command will give all the access of the all the tables of the public schema to user2. u7ser2 can insert update delete on public schema.
+- we can create role can act as user or a role can be given as privilege/attribute to a user.
+- `grant select on all tables in schema public to role1;` we are giving selecting permission for all tables of public schema to role1
+
+- `create user user3 with encrypted password '123456';` now creating a user and give the privileges of role1.
+
+![alt text](image-28.png)
+
+- `grant role1 to user3;` this will give the role1 access to the user3. and now on user3 can access all the tables of the public schema.
+
+![alt text](image-29.png)
+
+- now user3 can access the tables but can not insert in the table
+
+![alt text](image-30.png)
+
+- this is supposed to happen.
+- we can use a user as the privilege/attribute of another user
+
+## 7-5 Structured Query Language(SQL)
+
+#### What is Structured Query Language(SQL)?
+
+- It is a query language by using this we can do queries. This is specific domain language. By using this language we do communication with database. this is also called `sequel` at the early stage and the full form was standard english query language then the name is changed to sql. this do the query in database, this can grab data can post data, can update data, can delete data and manipulate data. This is a standardized language which works on relational database model. here query means a sql statement.
+
+- `SELECT * FROM test_table` this sis sql statement `SELECT` `FROM` is a sql keyword, `test_table` is a identifier.
+
+- SQL is a declarative language. There are some language that are imperative.
+- In declarative language we just have to say what to do. and we do not need to tell how to do.(sql)
+- In imperative language we have to tell everything step by step. (java). python is hybrid of imperative and declarative.
+
+![alt text](<WhatsApp Image 2025-05-15 at 13.23.56_01fb1615.jpg>)
+
+#### SQL Commands Are divided into different categories.
+
+![alt text](<WhatsApp Image 2025-05-15 at 13.33.41_33ae5ca6.jpg>)
+
+- **DDL** - Database Definition Language. Used to define and manage database structure(tables, schemas, etc). Think of DDL as "building or breaking the structure of your house".
+
+| Command    | Description                     | Example                                   |
+| ---------- | ------------------------------- | ----------------------------------------- |
+| `CREATE`   | Creates a new table or database | `CREATE TABLE users (id INT, name TEXT);` |
+| `DROP`     | Deletes a table or database     | `DROP TABLE users;`                       |
+| `ALTER`    | Modifies an existing table      | `ALTER TABLE users ADD email TEXT;`       |
+| `TRUNCATE` | Deletes all data in a table     | `TRUNCATE TABLE users;`                   |
+
+- **DML** - Database Manipulation/Modification Language. Used for modifying data inside existing tables. DML is like cleaning or changing the items inside your house.
+
+| Command  | Description            | Example                                        |
+| -------- | ---------------------- | ---------------------------------------------- |
+| `INSERT` | Adds new data          | `INSERT INTO users (name) VALUES ('Ali');`     |
+| `UPDATE` | Modifies existing data | `UPDATE users SET name = 'Ayan' WHERE id = 1;` |
+| `DELETE` | Removes data           | `DELETE FROM users WHERE id = 1;`              |
+
+- **DCL** - Database Control Language for controlling user access. Used for access control — who can see or modify what. DCL is like giving or taking back keys to your house.
+
+| Command  | Description                  | Example                                       |
+| -------- | ---------------------------- | --------------------------------------------- |
+| `GRANT`  | Gives user access privileges | `GRANT SELECT ON users TO read_only_user;`    |
+| `REVOKE` | Removes access privileges    | `REVOKE SELECT ON users FROM read_only_user;` |
+
+- **TCL** - Transaction Control Language. Used to control transactions, especially in cases where multiple steps must succeed together.TCL is like Undo/Redo for your data changes.
+- | Command     | Description                                   | Example               |
+  | ----------- | --------------------------------------------- | --------------------- |
+  | `COMMIT`    | Saves all changes made during the transaction | `COMMIT;`             |
+  | `ROLLBACK`  | Undoes changes if something goes wrong        | `ROLLBACK;`           |
+  | `SAVEPOINT` | Sets a point to roll back to later            | `SAVEPOINT my_point;` |
+
+- DQL - Data Query Language. Used to fetch data from the database. DQL is like asking questions: "Hey DB, show me this!"
+
+| Command  | Description                 | Example                |
+| -------- | --------------------------- | ---------------------- |
+| `SELECT` | Retrieves data from a table | `SELECT * FROM users;` |
+
+![alt text](<WhatsApp Image 2025-05-15 at 15.22.12_4b8f9c9d.jpg>)
+
+- sql will be written in backend. sql can be written in raw or we can use orm.
+- SQL is a standardized query language and postgres is made based on SQL which is implementation Of SQL. While implementing it changes slightly.
