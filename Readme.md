@@ -141,6 +141,56 @@ A Medical Database System is needed to enhance the efficiency and effectiveness 
 
 - using `\d` we can see the tables
 - lets insert a data to the table using `insert into test_table(name) values('Sazid');`
-- if we ant to see everything inside the table `select * from test_table`
+- if we ant to see everything inside the table `select * from test_table;`
 
 ![alt text](image-21.png)
+
+## 7-4 Granting and Revoking Privileges
+
+![alt text](image-22.png)
+
+- here we are as user who have no permission given. thats why we can not select all the columns of table using `select * from test_table;`.
+- now we want to give permission to the user1 from where we have logged in as postgres super user.
+- `grant all privileges on test_table to user1;` this will give the user1 all the access of doing read write and all.
+
+![alt text](image-23.png)
+
+- now from where we are logged in we are getting the access of the table.
+
+- `insert into test_table(name) values('Shakil');` we can insert as well by using User1.
+
+![alt text](image-24.png)
+
+- now make a user who will not get all the access. he just can see the data. `create user user2 with encrypted password '123456';`
+
+- open another tab and access using user2
+
+![alt text](image-25.png)
+
+- from the main postgres logged in terminal `grant select on test_table to user2` using this will allow the user2 to just select and show.
+
+![alt text](image-26.png)
+
+- From here we can see the table but can not insert as we have not gave te access to write.
+- we can take back the permission as well using `revoke select on test_table from user2;`.
+
+![alt text](image-27.png)
+
+- `grant all privileges on all tables in schema public to user2;` this command will give all the access of the all the tables of the public schema to user2. u7ser2 can insert update delete on public schema.
+- we can create role can act as user or a role can be given as privilege/attribute to a user.
+- `grant select on all tables in schema public to role1;` we are giving selecting permission for all tables of public schema to role1
+
+- `create user user3 with encrypted password '123456';` now creating a user and give the privileges of role1.
+
+![alt text](image-28.png)
+
+- `grant role1 to user3;` this will give the role1 access to the user3. and now on user3 can access all the tables of the public schema.
+
+![alt text](image-29.png)
+
+- now user3 can access the tables but can not insert in the table
+
+![alt text](image-30.png)
+
+- this is supposed to happen.
+- we can use a user as the privilege/attribute of another user
